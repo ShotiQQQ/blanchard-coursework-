@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* DropDown */
   const params = {
-    btnClassName: "header__list-down--btn",
+    btnClassName: "header__down-btn",
     activeClassName: "is-active",
     disabledClassName: "is-disabled"
   }
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 /* gallery Swiper */
-let gallerySlider = new Swiper(".gallery__content--right", {
+let gallerySlider = new Swiper(".gallery__content-right", {
   slidesPerView: 3,
   slidesPerGroup: 3,
   grid: {
@@ -135,6 +135,95 @@ let gallerySlider = new Swiper(".gallery__content--right", {
     collapsible: true
     });
 
+
+
+const eventsSlider = new Swiper(".events__slider", {
+  slidesPerView: 3,
+  spaceBetween: 50,
+  navigation: {
+    nextEl: ".events__button-next",
+    prevEl: ".events__button-prev"
+  },
+
+  a11y: {
+    prevSlideMessage: 'Предыдущий',
+    nextSlideMessage: 'Следующий',
+  }
+});
+
+tippy('#tooltip-1', {
+  content: 'Пример современных тенденций - современная методология разработки',
+  theme: 'violet'
+});
+
+tippy('#tooltip-2', {
+  content: 'Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции',
+  theme: 'violet'
+});
+
+tippy('#tooltip-3', {
+  content: 'В стремлении повысить качество',
+  theme: 'violet'
 });
 
 
+const projectSlider = new Swiper(".projects__swiper", {
+  slidesPerView: 3,
+  spaceBetween: 50,
+  navigation: {
+    nextEl: ".projects__button-next",
+    prevEl: ".projects__button-prev"
+  },
+
+  a11y: {
+    prevSlideMessage: 'Предыдущий',
+    nextSlideMessage: 'Следующий',
+  }
+});
+
+/* ymaps.ready(init);
+    function init() {
+        // Создание карты.
+        var myMap = new ymaps.Map("map", {
+            // Координаты центра карты.
+            // Порядок по умолчанию: «широта, долгота».
+            // Чтобы не определять координаты центра карты вручную,
+            // воспользуйтесь инструментом Определение координат.
+            center: [55.76327770325011, 37.60932808335869],
+            // Уровень масштабирования. Допустимые значения:
+            // от 0 (весь мир) до 19.
+            zoom: 16,
+        });
+
+    var myPlacemark = new ymaps.Placemark([55.76327770325011, 37.60932808335869], {}, {
+      iconLayout: 'default#image',
+      iconImageHref: 'img/map__icon.svg',
+      iconImageSize: [20, 20],
+      iconImageOffset: [-3, -42]
+    })
+ */
+
+    ymaps.ready(init);
+    function init() {
+        // Создание карты.
+        var myMap = new ymaps.Map("map", {
+            // Координаты центра карты.
+            // Порядок по умолчанию: «широта, долгота».
+            // Чтобы не определять координаты центра карты вручную,
+            // воспользуйтесь инструментом Определение координат.
+            center: [55.76327770325011, 37.60932808335869],
+            // Уровень масштабирования. Допустимые значения:
+            // от 0 (весь мир) до 19.
+            zoom: 16
+        });
+
+        var myPlacemark = new ymaps.Placemark([55.76327770325011, 37.60932808335869], {}, {
+          iconLayout: 'default#image',
+          iconImageHref: 'img/map__icon.svg',
+          iconImageSize: [20, 20],
+        })
+
+        myMap.geoObjects.add(myPlacemark);
+    }
+
+});
