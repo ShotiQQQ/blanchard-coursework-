@@ -214,8 +214,18 @@ const projectSlider = new Swiper(".projects__swiper", {
             center: [55.76327770325011, 37.60932808335869],
             // Уровень масштабирования. Допустимые значения:
             // от 0 (весь мир) до 19.
-            zoom: 16
-        });
+            zoom: 16,
+          },
+          {
+            suppressMapOpenBlock: true,
+            geolocationControlSize: "large",
+            geolocationControlPosition:  { top: "200px", right: "20px" },
+            geolocationControlFloat: 'none',
+            zoomControlSize: "small",
+            zoomControlFloat: "none",
+            zoomControlPosition: { top: "120px", right: "20px" }
+          }
+        );
 
         var myPlacemark = new ymaps.Placemark([55.76327770325011, 37.60932808335869], {}, {
           iconLayout: 'default#image',
@@ -224,6 +234,9 @@ const projectSlider = new Swiper(".projects__swiper", {
         })
 
         myMap.geoObjects.add(myPlacemark);
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+        myMap.controls.remove('fullscreenControl');
     }
 
 });
