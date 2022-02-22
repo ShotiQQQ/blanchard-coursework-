@@ -542,6 +542,7 @@ img {
 }
 
 .gallery__title {
+  max-width: 190px;
   font-weight: 400;
   font-size: 48px;
   line-height: 65px;
@@ -589,6 +590,10 @@ img {
   border: 1px solid #999;
   color: #999999;
   margin-top: 1px;
+}
+
+.choices__list--dropdown, .choices__list[aria-expanded] {
+  background-color: inherit;
 }
 
 .choices[data-type*=select-one] .choices__inner {
@@ -642,7 +647,7 @@ img {
   border-bottom: 1px solid #999;
 }
 
-.choices__list--dropdown .choices__item--selectable.is-highlighted {
+.choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
   background-color: rgba(255, 255, 255, 0.2);
   color: var(--white);
 }
@@ -663,7 +668,7 @@ img {
   padding-top: 25px;
 }
 
-.swiper-right-btns {
+.gallery__btns {
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 30px;
@@ -675,7 +680,7 @@ img {
   color: var(--white);
 }
 
-.swiper-btn--prev, .swiper-btn--next {
+.gallery__btns--prev, .gallery__btns--next {
   cursor: pointer;
   background-color: #666;
   background-size: 12px 12px;
@@ -687,15 +692,16 @@ img {
 }
 
 .sw-btn.swiper-button-disabled {
+  display: block;
   opacity: 0.4;
   cursor: not-allowed;
 }
 
-.swiper-btn--prev {
+.gallery__btns--prev {
   background-image: url("../img/swiper__prev.svg");
 }
 
-.swiper-btn--next {
+.gallery__btns--next {
   background-image: url("../img/swiper__next.svg");
 }
 
@@ -747,7 +753,7 @@ img {
 /* catalog */
 
 .catalog {
-  padding-top: 80px;
+  padding-top: 20px;
   padding-bottom: 80px;
 }
 
@@ -981,13 +987,9 @@ img {
 .events__item {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
   min-height: 700px;
-  outline: 1px solid #cacaca;
-}
-
-.events__img {
-  object-fit: cover;
+  border: 1px solid #cacaca;
+  box-sizing: border-box;
 }
 
 .events__item-container {
@@ -1032,18 +1034,53 @@ img {
   border-bottom: 1px solid var(--violet);
 }
 
+.container__swiper {
+  position: relative;
+  z-index: 2;
+}
+
 .events__slider {
   overflow: hidden;
 }
 
-/* .events .swiper-container {
-  overflow: hidden;
-} */
+.events__button-next, .events__button-prev {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: #ECECEC;
+  transition: background-color .5s ease;
+  z-index: 1;
+}
 
-/* .events .swiper-wrapper {
+.swiper-button-disabled {
+  display: none;
+}
 
-  height: 700px;
-} */
+.events__button-next {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.events__button-next svg {
+  transform: rotate(-90deg);
+}
+
+.events__button-prev {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.events__button-prev svg {
+  transform: rotate(90deg);
+}
 
 
 /* projects */
@@ -1098,6 +1135,11 @@ img {
   color: var(--violet);
 }
 
+.projects__swiper {
+  overflow: hidden;
+  width: 90%;
+}
+
 .projects__subtitle {
   font-weight: 600;
   font-size: 24px;
@@ -1106,12 +1148,44 @@ img {
   margin-bottom: 23px;
 }
 
+.projects__swiper-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projects__button-prev, .projects__button-next {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: #ECECEC;
+  transition: background-color .5s ease;
+}
+
+.projects__button-prev {
+  transform: rotate(90deg);
+}
+
+.projects__button-next {
+  transform: rotate(-90deg);
+}
+
 .projects__cards {
-  text-align: center;
-  max-width: 450px;
-  max-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
   padding: 45px 103px;
   border: 1px solid #cacaca;
+  box-sizing: border-box;
+}
+
+.projects__img {
+  filter: grayscale(100%);
+  opacity: 40%;
 }
 
 
@@ -1193,11 +1267,10 @@ img {
 #map {
   width: 100%;
   height: 688px;
-  filter: grayscale(1);
 }
 
-#map .ymaps-2-1-79-image  {
-  filter: grayscale(0%);
+[class*="ground-pane"] {
+  filter: grayscale(1);
 }
 
 /* footer */

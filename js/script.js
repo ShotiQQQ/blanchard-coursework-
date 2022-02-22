@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Swiper */
 
-  const swiper = new Swiper('.swiper-container', {
+  const swiper = new Swiper('.hero__slider', {
     allowTouchMove: false,
     slidesPerView: 1,
     loop: true,
@@ -81,8 +81,8 @@ let gallerySlider = new Swiper(".gallery__content-right", {
     type: "fraction"
   },
   navigation: {
-    nextEl: ".swiper-btn--next",
-    prevEl: ".swiper-btn--prev"
+    nextEl: ".gallery__btns--next",
+    prevEl: ".gallery__btns--prev"
   },
 
   breakpoints: {
@@ -116,7 +116,7 @@ let gallerySlider = new Swiper(".gallery__content-right", {
   }
 });
 
-  document.querySelectorAll('.tabs-nav__btn').forEach(function(tabsBtn){
+  /* document.querySelectorAll('.tabs-nav__btn').forEach(function(tabsBtn){
     tabsBtn.addEventListener('click', function(e){
       const path = e.currentTarget.dataset.path;
       document.querySelectorAll('.tabs-nav__btn').forEach(function(btn){
@@ -126,12 +126,12 @@ let gallerySlider = new Swiper(".gallery__content-right", {
           tabsBtn.classList.remove('tabs-item--active')});
           document.querySelector(`[data-target="${path}"]`).classList.add('tabs-item--active');
     })
-  })
+  }) */
 
 
   $(".accordion").accordion({
     heightStyle: "content",
-    active: false,
+    active: 0,
     collapsible: true
     });
 
@@ -170,6 +170,7 @@ tippy('#tooltip-3', {
 const projectSlider = new Swiper(".projects__swiper", {
   slidesPerView: 3,
   spaceBetween: 50,
+  rewind: true,
   navigation: {
     nextEl: ".projects__button-next",
     prevEl: ".projects__button-prev"
@@ -180,28 +181,6 @@ const projectSlider = new Swiper(".projects__swiper", {
     nextSlideMessage: 'Следующий',
   }
 });
-
-/* ymaps.ready(init);
-    function init() {
-        // Создание карты.
-        var myMap = new ymaps.Map("map", {
-            // Координаты центра карты.
-            // Порядок по умолчанию: «широта, долгота».
-            // Чтобы не определять координаты центра карты вручную,
-            // воспользуйтесь инструментом Определение координат.
-            center: [55.76327770325011, 37.60932808335869],
-            // Уровень масштабирования. Допустимые значения:
-            // от 0 (весь мир) до 19.
-            zoom: 16,
-        });
-
-    var myPlacemark = new ymaps.Placemark([55.76327770325011, 37.60932808335869], {}, {
-      iconLayout: 'default#image',
-      iconImageHref: 'img/map__icon.svg',
-      iconImageSize: [20, 20],
-      iconImageOffset: [-3, -42]
-    })
- */
 
     ymaps.ready(init);
     function init() {
@@ -227,6 +206,8 @@ const projectSlider = new Swiper(".projects__swiper", {
           }
         );
 
+        myMap.behaviors.disable('scrollZoom');
+
         var myPlacemark = new ymaps.Placemark([55.76327770325011, 37.60932808335869], {}, {
           iconLayout: 'default#image',
           iconImageHref: 'img/map__icon.svg',
@@ -237,6 +218,7 @@ const projectSlider = new Swiper(".projects__swiper", {
         myMap.controls.remove('trafficControl');
         myMap.controls.remove('typeSelector');
         myMap.controls.remove('fullscreenControl');
+        myMap.controls.remove('searchControl');
     }
 
 });
