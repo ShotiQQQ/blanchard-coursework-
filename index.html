@@ -26,7 +26,6 @@
             <li class="header__list-item"><a class="header__list-link" href="#">Галерея</a></li>
             <li class="header__list-item"><a class="header__list-link" href="#">Каталог</a></li>
             <li class="header__list-item"><a class="header__list-link" href="#">События</a></li>
-            <li class="header__list-item"><a class="header__list-link" href="#">Издания</a></li>
             <li class="header__list-item"><a class="header__list-link" href="#">Проекты</a></li>
             <li class="header__list-item"><a class="header__list-link" href="#">Контакты</a></li>
           </ul>
@@ -182,7 +181,17 @@
           <option value="">Рисунок</option>
           <option value="">Скульптура</option>
         </select>
-        <p class="gallery__text">Вам предоставляется 10 бесплатных скачиваний. Для увеличения количества скачиваний <a class="gallery__text-auth" href="#">авторизуйтесь,</a> либо воспользуйтесь лицензией. </p>
+        <ul class="gallery__checkboxes list-reset">
+          <li class="gallery__item">
+            <label class="gallery__checkbox"><input type="checkbox"><span>XIX век</span></label>
+          </li>
+          <li class="gallery__item">
+            <label class="gallery__checkbox"><input type="checkbox"><span>XX век</span></label>
+          </li>
+          <li class="gallery__item">
+            <label class="gallery__checkbox"><input type="checkbox"><span>Современность</span></label>
+          </li>
+        </ul>
     </div>
       <div class="gallery__content-right">
         <div class="gallery__btns flex">
@@ -317,9 +326,7 @@
   </section>
   <section class="catalog">
     <div class="container catalog__container">
-      <div class="catalog__top flex">
-        <h2 class="catalog__title">Каталог</h2>
-      </div>
+      <h2 class="catalog__title">Каталог</h2>
       <div class="tabs-content">
         <div class="tabs-item tabs-item--active" data-target="first">
           <p class="tabs-item__text">
@@ -509,7 +516,8 @@
               <div class="events__item swiper-slide">
                 <img class="events__img" src="img/events__1.jpg" alt="Книжная гравюра">
                 <div class="events__item-container">
-                  <span class="events__place">Музей им. Щусева с 20 марта по 30 апреля</span>
+                  <span class="events__place">Музей им. Щусева</span>
+                  <span class="events__date">с 20 марта по 30 апреля</span>
                   <h3 class="events__subtitle">Книжная гравюра в живом восприятии</h3>
                   <p class="events__info">Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо.</p>
                   <button class="events__more btn-reset">Подробнее</button>
@@ -518,7 +526,8 @@
               <div class="events__item swiper-slide">
                 <img class="events__img" src="img/events__2.jpg" alt="Открытая дискуссия">
                 <div class="events__item-container">
-                  <span class="events__place">ММОМА 24 марта 19:00</span>
+                  <span class="events__place">ММОМА</span>
+                  <span class="events__date">24 марта 19:00</span>
                   <h3 class="events__subtitle">«Открытая дискуссия». Дмитрий Петров и Сергей Ильин.</h3>
                   <p class="events__info">Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта.</p>
                   <button class="events__more btn-reset">Подробнее</button>
@@ -527,7 +536,8 @@
               <div class="events__item swiper-slide">
                 <img class="events__img" src="img/events__3.jpg" alt="Формация 2020">
                 <div class="events__item-container">
-                  <span class="events__place">Еврейский музей с 31 марта по 21 апреля</span>
+                  <span class="events__place">Еврейский музей</span>
+                  <span class="events__date">с 31 марта по 21 апреля</span>
                   <h3 class="events__subtitle">Выставка «Формация 2020»</h3>
                   <p class="events__info">Идейные соображения высшего порядка, а также современная методология разработки играет важную роль в формировании глубокомысленных рассуждений.</p>
                   <button class="events__more btn-reset">Подробнее</button>
@@ -536,7 +546,8 @@
               <div class="events__item swiper-slide">
                 <img class="events__img" src="img/events__4.jpg" alt="Джон Винзор">
                 <div class="events__item-container">
-                  <span class="events__place">ММАМ с 8 апреля по 20 мая</span>
+                  <span class="events__place">ММАМ</span>
+                  <span class="events__date">с 8 апреля по 20 мая</span>
                   <h3 class="events__subtitle">Джон Винзор. Фотографии из серии «Метафора серебра»</h3>
                   <p class="events__info">Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо.</p>
                   <button class="events__more btn-reset">Подробнее</button>
@@ -545,7 +556,8 @@
               <div class="events__item swiper-slide">
                 <img class="events__img" src="img/events__5.jpg" alt="XXIV Международная биеннале">
                 <div class="events__item-container">
-                  <span class="events__place">ММАМ с 8 апреля по 20 мая</span>
+                  <span class="events__place">ММАМ</span>
+                  <span class="events__date">с 8 апреля по 20 мая</span>
                   <h3 class="events__subtitle">XXIV Международная биеннале молодого искусства</h3>
                   <p class="events__info">Внезапно, реплицированные с зарубежных источников, современные исследования.</p>
                   <button class="events__more btn-reset">Подробнее</button>
