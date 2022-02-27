@@ -88,21 +88,43 @@ let gallerySlider = new Swiper(".gallery__content-right", {
   breakpoints: {
     320: {
       slidesPerView: 1,
+      slidesPerGroup: 1,
       grid: {
         rows: 1
       },
       spaceBetween: 0
     },
+
     576: {
       slidesPerView: 2,
+      slidesPerGroup: 2,
       grid: {
-        rows: 2
+        rows: 1
       },
       spaceBetween: 30
     },
 
-    1200: {
+    1023: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      grid: {
+        rows: 2
+      },
+      spaceBetween: 34
+    },
+
+    1500: {
       slidesPerView: 3,
+      slidesPerGroup: 3,
+      grid: {
+        rows: 2
+      },
+      spaceBetween: 25
+    },
+
+    1700: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
       grid: {
         rows: 2
       },
@@ -145,6 +167,33 @@ const eventsSlider = new Swiper(".events__slider", {
     prevEl: ".events__button-prev"
   },
 
+  pagination: {
+    el: '.events__swiper-pagination',
+    clickable: true,
+    },
+
+  breakpoints: {
+    1500: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    },
+
+    900: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+
+    590: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0,
+    },
+  },
+
   a11y: {
     prevSlideMessage: 'Предыдущий',
     nextSlideMessage: 'Следующий',
@@ -174,6 +223,23 @@ const projectSlider = new Swiper(".projects__swiper", {
   navigation: {
     nextEl: ".projects__button-next",
     prevEl: ".projects__button-prev"
+  },
+
+  breakpoints: {
+    1501: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    },
+
+    691: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0,
+    },
   },
 
   a11y: {
@@ -220,5 +286,23 @@ const projectSlider = new Swiper(".projects__swiper", {
         myMap.controls.remove('fullscreenControl');
         myMap.controls.remove('searchControl');
     }
+
+    document.querySelector('.header__burger').addEventListener('click', () => {
+      document.querySelector('.header__up-nav--mobile').classList.toggle('mobile-active');
+    })
+
+    document.querySelector('.header__up-button').addEventListener('click', () => {
+      document.querySelector('.header__up-nav--mobile').classList.toggle('mobile-active');
+    })
+
+    document.querySelector('#search').addEventListener('click', () => {
+      document.querySelector('.header__search--mobile').classList.toggle('header__search--mobile-active');
+      document.querySelector('#search').classList.toggle('search__mobile--active');
+    })
+
+    document.querySelector('.header__search--close').addEventListener('click', () => {
+      document.querySelector('.header__search--mobile').classList.toggle('header__search--mobile-active');
+      document.querySelector('#search').classList.toggle('search__mobile--active');
+    })
 
 });
