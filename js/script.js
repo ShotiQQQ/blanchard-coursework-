@@ -104,7 +104,7 @@ let gallerySlider = new Swiper(".gallery__content-right", {
       spaceBetween: 30
     },
 
-    1023: {
+    1025: {
       slidesPerView: 2,
       slidesPerGroup: 2,
       grid: {
@@ -185,7 +185,7 @@ const eventsSlider = new Swiper(".events__slider", {
 
     590: {
       slidesPerView: 2,
-      spaceBetween: 20,
+      spaceBetween: 34,
     },
 
     320: {
@@ -233,7 +233,7 @@ const projectSlider = new Swiper(".projects__swiper", {
 
     691: {
       slidesPerView: 2,
-      spaceBetween: 20,
+      spaceBetween: 34,
     },
 
     320: {
