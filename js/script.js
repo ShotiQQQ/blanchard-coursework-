@@ -305,4 +305,41 @@ const projectSlider = new Swiper(".projects__swiper", {
       document.querySelector('#search').classList.toggle('search__mobile--active');
     })
 
+    const modals = () => {
+      const swiperSlide = document.querySelectorAll('.swiper-slide');
+      const modals = document.querySelector('.gallery__modals');
+      const modal = document.querySelectorAll('.gallery__modal');
+      const close = document.querySelectorAll('.gallery__close');
+
+      swiperSlide.forEach((el) => {
+        el.addEventListener('click', (e) => {
+          let path = e.currentTarget.getAttribute('data-path');
+
+          modal.forEach((el) => {
+            el.classList.remove('gallery__modal-active')
+          })
+
+          modals.classList.add('gallery__modals-active');
+          document.querySelector(`[data-target="${path}"]`).classList.add('gallery__modal-active');
+        })
+      })
+
+      modals.addEventListener('click', (e) => {
+          if (e.target == modals) {
+            modal.forEach((el) => {
+              el.classList.remove('gallery__modal-active')
+            })
+            modals.classList.remove('gallery__modals-active');
+          }
+        })
+
+      close.forEach((el) => {
+        el.addEventListener('click', () => {
+          el.classList.remove('gallery__modal-active');
+          modals.classList.remove('gallery__modals-active');
+        })
+      })
+    }
+
+    modals()
 });
