@@ -77,12 +77,12 @@ let gallerySlider = new Swiper(".gallery__content-right", {
   },
   spaceBetween: 30,
   pagination: {
-    el: ".swiper-pagination--right",
+    el: ".swiper-pagination-right",
     type: "fraction"
   },
   navigation: {
-    nextEl: ".gallery__btns--next",
-    prevEl: ".gallery__btns--prev"
+    nextEl: ".gallery__btns-next",
+    prevEl: ".gallery__btns-prev"
   },
 
   breakpoints: {
@@ -137,19 +137,6 @@ let gallerySlider = new Swiper(".gallery__content-right", {
     nextSlideMessage: 'Следующий',
   }
 });
-
-  /* document.querySelectorAll('.tabs-nav__btn').forEach(function(tabsBtn){
-    tabsBtn.addEventListener('click', function(e){
-      const path = e.currentTarget.dataset.path;
-      document.querySelectorAll('.tabs-nav__btn').forEach(function(btn){
-        btn.classList.remove('tabs-nav__btn--active')});
-        e.currentTarget.classList.add('tabs-nav__btn--active');
-        document.querySelectorAll('.tabs-item').forEach(function(tabsBtn){
-          tabsBtn.classList.remove('tabs-item--active')});
-          document.querySelector(`[data-target="${path}"]`).classList.add('tabs-item--active');
-    })
-  }) */
-
 
   $(".accordion").accordion({
     heightStyle: "content",
@@ -288,31 +275,44 @@ const projectSlider = new Swiper(".projects__swiper", {
     }
 
     document.querySelector('.header__burger').addEventListener('click', () => {
-      document.querySelector('.header__up-nav--mobile').classList.toggle('mobile-active');
+      document.querySelector('.header__up-nav-mobile').classList.toggle('mobile-active');
     })
 
     document.querySelector('.header__up-button').addEventListener('click', () => {
-      document.querySelector('.header__up-nav--mobile').classList.toggle('mobile-active');
+      document.querySelector('.header__up-nav-mobile').classList.toggle('mobile-active');
     })
 
     document.querySelector('#search').addEventListener('click', () => {
-      document.querySelector('.header__search--mobile').classList.toggle('header__search--mobile-active');
+      document.querySelector('.header__search-mobile').classList.toggle('header__search--mobile-active');
       document.querySelector('#search').classList.toggle('search__mobile--active');
     })
 
-    document.querySelector('.header__search--close').addEventListener('click', () => {
-      document.querySelector('.header__search--mobile').classList.toggle('header__search--mobile-active');
+    document.querySelector('.header__search-close').addEventListener('click', () => {
+      document.querySelector('.header__search-mobile').classList.toggle('header__search--mobile-active');
       document.querySelector('#search').classList.toggle('search__mobile--active');
     })
+
+    const mobileLinks = () => {
+      let links = document.querySelectorAll('.header__list-link-mobile');
+
+      links.forEach((link) => {
+        link.addEventListener('click', () => {
+          document.querySelector('.header__up-nav-mobile').classList.toggle('mobile-active');
+        })
+      })
+    }
+
+    mobileLinks();
 
     const modals = () => {
-      const swiperSlide = document.querySelectorAll('.swiper-slide');
+      const gallerySlide = document.querySelectorAll('.gallery__slide');
       const modals = document.querySelector('.gallery__modals');
       const modal = document.querySelectorAll('.gallery__modal');
       const close = document.querySelectorAll('.gallery__close');
 
-      swiperSlide.forEach((el) => {
+      gallerySlide.forEach((el) => {
         el.addEventListener('click', (e) => {
+          e.preventDefault();
           let path = e.currentTarget.getAttribute('data-path');
 
           modal.forEach((el) => {
@@ -341,5 +341,137 @@ const projectSlider = new Swiper(".projects__swiper", {
       })
     }
 
-    modals()
+    modals();
+
+    const MOBILE_WIDTH = 580;
+
+    function getWindowWidth () {
+      return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.body.clientWidth,
+        document.documentElement.clientWidth
+      );
+    }
+
+    function scrollToContent (link, isMobile) {
+      if (isMobile && getWindowWidth() > MOBILE_WIDTH) {
+        return;
+      }
+
+      const href = link.getAttribute('href').substring(1);
+      const scrollTarget = document.getElementById(href);
+      const elementPosition = scrollTarget.getBoundingClientRect().top;
+
+      window.scrollBy({
+          top: elementPosition,
+          behavior: 'smooth'
+      });
+    }
+
+    document.querySelectorAll('.js-scroll-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          scrollToContent(this, false);
+      });
+    });
+
+    (() => {
+      function setTabs (dataPath, dataTarget) {
+          const btns = document.querySelectorAll(`.accordion__link[${dataPath}]`);
+          const contents = document.querySelectorAll(`.tabs-item__left[${dataTarget}]`);
+
+          btns.forEach((btn) => {
+              btn.addEventListener('click', function (evt) {
+                  evt.preventDefault();
+                  const path = this.getAttribute(dataPath);
+                  console.log(path);
+                  const target = document.querySelector(`.tabs-item__left[${dataTarget}="${path}"]`);
+
+
+                  btns.forEach((currentBtn) => {
+                      currentBtn.classList.remove('tabs-item-active');
+                  });
+
+                  this.classList.add('tabs-item-active');
+
+                  contents.forEach((content) => {
+                      content.classList.remove('tabs-item-active');
+                  });
+
+                  target.classList.add('tabs-item-active');
+              });
+          });
+      }
+
+      setTabs('data-painter-btn', 'data-painters-target');
+
+  })();
+  var selector = document.querySelector("input[type='tel']");
+  var im = new Inputmask("+7 (999)-999-99-99");
+
+  im.mask(selector);
+
+ /*  new JustValidate('.contacts__middle', {
+    rules: {
+      name: {
+        required: true,
+        minLength: 2,
+        maxLength: 15,
+        errorMessage: 'Недопустимый формат',
+      },
+      tel: {
+        required: true,
+        errorMessage: 'Недопустимый формат',
+        function: (name, value) => {
+          const phone = selector.inputmask.unmaskedvalue()
+          return Number(phone) && phone.length === 10
+        }
+      }
+    }
+  })*/
+
+  const validation = new JustValidate(
+    '#form',
+    {
+      errorFieldCssClass: 'is-invalid',
+      errorLabelCssClass: 'is-label-invalid',
+      focusInvalidField: true,
+      lockForm: true,
+      tooltip: {
+        position: 'top',
+      },
+    },
+  );
+
+  validation
+  .addField('#name', [
+    {
+      rule: 'minLength',
+      value: 3,
+      errorMessage: 'Недопустимый формат'
+    },
+
+    {
+      rule: 'maxLength',
+      value: 30,
+      errorMessage: 'Недопустимый формат'
+    },
+    {
+      rule: 'required',
+      errorMessage: 'Обязательно для заполнения'
+    }
+  ])
+  .addField('#number', [
+    {
+      rule: 'number',
+      errorMessage: 'Недопустимый формат',
+      rule: 'required',
+      errorMessage: 'Обязательно для заполнения'
+    }
+  ]);
 });
+
