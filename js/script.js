@@ -86,7 +86,7 @@ let gallerySlider = new Swiper(".gallery__content-right", {
   },
 
   breakpoints: {
-    320: {
+    200: {
       slidesPerView: 1,
       slidesPerGroup: 1,
       grid: {
@@ -133,8 +133,32 @@ let gallerySlider = new Swiper(".gallery__content-right", {
   },
 
   a11y: {
-    prevSlideMessage: 'Предыдущий',
-    nextSlideMessage: 'Следующий',
+    enabled: false,
+  },
+  keyboard: true,
+  watchSlidesProgress: true,
+  watchSlidesVisibility: true,
+  slideVisibleClass: 'slide-visible',
+
+  on: {
+    init: function () {
+      this.slides.forEach(slide => {
+        if (!slide.classList.contains('slide-visible')) {
+          slide.tabIndex = '-1';
+        } else {
+          slide.tabIndex = '';
+        }
+      });
+    },
+    slideChange: function () {
+      this.slides.forEach(slide => {
+        if (!slide.classList.contains('slide-visible')) {
+          slide.tabIndex = '-1';
+        } else {
+          slide.tabIndex = '';
+        }
+      });
+    }
   }
 });
 
@@ -220,7 +244,7 @@ const projectSlider = new Swiper(".projects__swiper", {
 
     691: {
       slidesPerView: 2,
-      spaceBetween: 34,
+      spaceBetween: 45,
     },
 
     320: {
@@ -321,6 +345,7 @@ const projectSlider = new Swiper(".projects__swiper", {
 
           modals.classList.add('gallery__modals-active');
           document.querySelector(`[data-target="${path}"]`).classList.add('gallery__modal-active');
+          document.body.classList.add('body__hidden');
         })
       })
 
@@ -330,6 +355,7 @@ const projectSlider = new Swiper(".projects__swiper", {
               el.classList.remove('gallery__modal-active')
             })
             modals.classList.remove('gallery__modals-active');
+            document.body.classList.remove('body__hidden');
           }
         })
 
@@ -337,6 +363,7 @@ const projectSlider = new Swiper(".projects__swiper", {
         el.addEventListener('click', () => {
           el.classList.remove('gallery__modal-active');
           modals.classList.remove('gallery__modals-active');
+          document.body.classList.remove('body__hidden');
         })
       })
     }
@@ -410,29 +437,10 @@ const projectSlider = new Swiper(".projects__swiper", {
       setTabs('data-painter-btn', 'data-painters-target');
 
   })();
-  var selector = document.querySelector("input[type='tel']");
+  /* var selector = document.querySelector("input[type='tel']");
   var im = new Inputmask("+7 (999)-999-99-99");
 
-  im.mask(selector);
-
- /*  new JustValidate('.contacts__middle', {
-    rules: {
-      name: {
-        required: true,
-        minLength: 2,
-        maxLength: 15,
-        errorMessage: 'Недопустимый формат',
-      },
-      tel: {
-        required: true,
-        errorMessage: 'Недопустимый формат',
-        function: (name, value) => {
-          const phone = selector.inputmask.unmaskedvalue()
-          return Number(phone) && phone.length === 10
-        }
-      }
-    }
-  })*/
+  im.mask(selector); */
 
   const validation = new JustValidate(
     '#form',
@@ -470,7 +478,7 @@ const projectSlider = new Swiper(".projects__swiper", {
       rule: 'number',
       errorMessage: 'Недопустимый формат',
       rule: 'required',
-      errorMessage: 'Обязательно для заполнения'
+      errorMessage: 'Обязательно для заполнения',
     }
   ]);
 });
